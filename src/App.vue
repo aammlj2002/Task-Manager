@@ -1,30 +1,68 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+    <div class="container">
+        <div class="layout-grid">
+            <div class="navbar">
+                <Navbar />
+            </div>
+            <div class="left-sidebar">
+                <LeftSideBar />
+            </div>
+            <div class="main">
+                <router-view />
+            </div>
+            <div class="footer">
+                <Footer />
+            </div>
+        </div>
+    </div>
 </template>
 
+<script>
+import Footer from './components/Footer'
+import LeftSideBar from './components/LeftSideBar'
+import Navbar from './components/Navbar'
+export default {
+    components: {
+        Footer,
+        LeftSideBar,
+        Navbar
+    },
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.layout-grid {
+    /* height: 100%; */
+    display: grid;
+    grid-template: 12vh 80vh 8vh / 1fr 4fr;
 }
+.navbar {
+    background: #ffffff;
+    border-bottom: 2px solid #01b7ff;
+    grid-area: 1 / 1 / 2 / 3;
 
-#nav {
-  padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.left-sidebar {
+    background: #f5f5f5;
+    border-right: 2px solid #01b7ff;
+    grid-area: 2 / 1 / 4 / 2;
+    overflow-y: auto;
 }
+.main {
+    background: #ffffff;
+    grid-area: 2 / 2 / 3 / 3;
+    overflow-y: auto;
+    padding: 10px;
+}
+.footer {
+    background: #01b7ff;
+    grid-area: 3 / 2 / 4 / 3;
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>
